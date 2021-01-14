@@ -65,7 +65,7 @@ export const numeroUltimaVenta = async (req, res) => {
     const ultimo = await Venta.find().sort({$natural:-1}).limit(1);
     
     
-    return res.json({ultimo: ultimo.[0].numero});
+    return res.json({ultimo: ultimo[0].numero});
   } catch (error) {
     res.status(500).json({
       message: error.message || "Something went wrong retrieving the tasks",
