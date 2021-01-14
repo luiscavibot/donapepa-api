@@ -45,3 +45,16 @@ export const crearVenta = async (req, res) => {
       });
     }
 };
+
+export const consultarVentas = async (req, res) => {
+  try {
+    
+    const ventas = await Venta.find();
+    return res.json(ventas);
+    
+  } catch (error) {
+    res.status(500).json({
+      message: error.message || "Something went wrong retrieving the tasks",
+    });
+  }
+};

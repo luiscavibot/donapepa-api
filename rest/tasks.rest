@@ -2,7 +2,7 @@
 @apiVentas = http://localhost:3000/api/ventas
 
 ### Get Tasks
-GET {{apiTasks}}
+GET {{apiVentas}}
 
 ### Create a new Task
 POST {{apiTasks}}
@@ -18,8 +18,8 @@ Content-Type: application/json
 
   { 
     "usuario": "Luis Vendedor",
-    "serie": "E001",
-    "numero":6,
+    "serie": "E002",
+    "numero":7,
     "lista" : [
       {
         "numLista": 1,
