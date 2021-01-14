@@ -1,22 +1,67 @@
-@api = http://localhost:3000/api/tasks
+@apiTasks = http://localhost:3000/api/tasks
+@apiVentas = http://localhost:3000/api/ventas
 
 ### Get Tasks
-GET {{api}}
+GET {{apiTasks}}
 
 ### Create a new Task
-POST {{api}}
+POST {{apiTasks}}
 Content-Type: application/json
 
 {
-  "title": "my four task",
-  "description": "my four task"
+  "title": "tarea 2",
+  "description": "Hacer UNA api"
 }
+### Create a new Vent
+POST {{apiVentas}}
+Content-Type: application/json
+
+  { 
+    "usuario": "Luis Vendedor",
+    "serie": "E001",
+    "numero":6,
+    "lista" : [
+      {
+        "numLista": 1,
+        "cod": 100192,
+        "descripcion": "Turroncito",
+        "unidades": "2 unidades",
+        "cantidad":2,
+        "descuento":10.5,
+        "precioUnitario":25.6,
+        "precioUnitarioIgv":3.5,
+        "total":32.0
+      }
+    ],
+    "tipoRegalo":"Probador",
+    "CantidadRegalo":2,
+    "tipoDocumentoCliente":"DNI",
+    "numeroDocumentoCliente": 47313459,
+    "fechaEmision":"",
+    "nombreCliente": "Hans Comprador",
+    "tipoMoneda":"Soles",
+    "igv": 0.19 ,
+    "mail": "luis@gmail.com",
+    "celular": 986934174,
+    "condicionPago": "Tarjeta",
+    "numeroOperacion": "e3333",
+    "provincia": "Lima",
+    "canalVenta":"Whatsapp",
+    "delivery":  true,
+    "direccion":  "Mi casa",
+    "referencias": "Al costado del vecino",
+    "gravada": 400,
+    "descuento": 10,
+    "totalIgv": 50,
+    "totalDelivery": 5.0,
+    "totalPagar":520
+  }
 
 ### Get Single Task
-GET {{api}}/5fc500819bf75f1ffdc48da7
+GET {{apiTasks}}/5fc500819bf75f1ffdc48da7
 
 ### Update
-PUT {{api}}/5fc500819bf75f1ffdc48da7
+PUT {{apiTasks}}/5fc500819bf75f1ffdc48da7
 Content-Type: application/json
 
 {
@@ -26,13 +71,13 @@ Content-Type: application/json
 }
 
 ### Get Tasks and search
-GET {{api}}?title=up
+GET {{apiTasks}}?title=up
 
 ### Get all Done tasks
-GET {{api}}/done
+GET {{apiTasks}}/done
 
 ### DELETE Single Task
-DELETE {{api}}/5fc500819bf75f1ffdc48da7
+DELETE {{apiTasks}}/5fc500819bf75f1ffdc48da7
 
 ### DELETE all tasks
-DELETE {{api}}
+DELETE {{apiTasks}}
