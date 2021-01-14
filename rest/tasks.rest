@@ -4,6 +4,9 @@
 ### Get Tasks
 GET {{apiVentas}}
 
+### Ultima venta
+GET {{apiVentas}}/ultimo
+
 ### Create a new Task
 POST {{apiTasks}}
 Content-Type: application/json
@@ -18,8 +21,8 @@ Content-Type: application/json
 
   { 
     "usuario": "Luis Vendedor",
-    "serie": "E002",
-    "numero":7,
+    "serie": "E000",
+    "numero":4,
     "lista" : [
       {
         "numLista": 1,

@@ -51,7 +51,21 @@ export const consultarVentas = async (req, res) => {
     
     const ventas = await Venta.find();
     return res.json(ventas);
+
+  } catch (error) {
+    res.status(500).json({
+      message: error.message || "Something went wrong retrieving the tasks",
+    });
+  }
+};
+
+export const numeroUltimaVenta = async (req, res) => {
+  try {
     
+    const ultimo = await Venta.find().sort({$natural:-1}).limit(1);
+    
+    
+    return res.json({ultimo: ultimo.[0].numero});
   } catch (error) {
     res.status(500).json({
       message: error.message || "Something went wrong retrieving the tasks",
