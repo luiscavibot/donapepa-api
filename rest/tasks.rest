@@ -1,5 +1,6 @@
 @apiTasks = http://localhost:3000/api/tasks
 @apiVentas = http://localhost:3000/api/ventas
+@apiProductos = http://localhost:3000/api/productos
 
 ### Get Tasks
 GET {{apiVentas}}
@@ -15,6 +16,23 @@ Content-Type: application/json
   "title": "tarea 2",
   "description": "Hacer UNA api"
 }
+
+### Create a new Task
+GET {{apiProductos}}?keyword=dp
+
+### Crear un nuevo producto
+POST {{apiProductos}}
+Content-Type: application/json
+
+  {
+    "nombre": "DP Tajada Piña",
+    "presentacion": "1/2kg", 
+    "codigo": "1000002", 
+    "marca": "Doña Pepa",
+    "precioUnitario": 7.0,
+    "habilitado": true
+  }
+
 ### Create a new Vent
 POST {{apiVentas}}
 Content-Type: application/json
