@@ -17,19 +17,19 @@ Content-Type: application/json
   "description": "Hacer UNA api"
 }
 
-### Create a new Task
-GET {{apiProductos}}?keyword=dp
+### Consulta para productos
+GET {{apiProductos}}
 
 ### Crear un nuevo producto
-POST {{apiProductos}}
+POST http://46.183.113.134:3000/api/productos
 Content-Type: application/json
 
   {
-    "nombre": "DP Tajada Piña",
-    "presentacion": "1/2kg", 
-    "codigo": "1000002", 
+    "nombre": "DP Exportación",
+    "presentacion": "1Kg", 
+    "codigo": "1000004", 
     "marca": "Doña Pepa",
-    "precioUnitario": 7.0,
+    "precioUnitario": 20,
     "habilitado": true
   }
 

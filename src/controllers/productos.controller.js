@@ -25,12 +25,14 @@ export const crearProducto = async (req, res) => {
 };
 export const consultarProducto = async (req, res) => {
     try {
-        const { keyword } = req.query;
-    
-        const condition = keyword
+        const { keyword, busquedaPorNombre } = req.query;
+
+        let condition = keyword
           ? { nombre: { $regex: `${keyword}`, $options: 'i'}}
           : {};
-    
+
+        condition = busquedaPorNombre ? { nombre: busquedaPorNombre }:condition;
+        
         const data = await Producto.find(condition);
     
         return res.json(data);
