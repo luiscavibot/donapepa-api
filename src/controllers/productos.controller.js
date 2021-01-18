@@ -45,7 +45,7 @@ export const consultarProducto = async (req, res) => {
 };
 export const borrarTodosProductos = async (req, res) => {
   try {
-    const data = await Task.deleteMany({});
+    const data = await Producto.deleteMany({});
     res.json({
       message: `${data.deletedCount} Task were deleted Successfully`,
     });
