@@ -43,3 +43,16 @@ export const consultarProducto = async (req, res) => {
         });
     }
 };
+export const borrarTodosProductos = async (req, res) => {
+  try {
+    const data = await Task.deleteMany({});
+    res.json({
+      message: `${data.deletedCount} Task were deleted Successfully`,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message:
+        error.message || "Some error ocurred while removing all tutorials",
+    });
+  }
+};

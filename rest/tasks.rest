@@ -12,13 +12,16 @@ GET {{apiVentas}}/ultimo
 POST {{apiTasks}}
 Content-Type: application/json
 
-{
-  "title": "tarea 2",
-  "description": "Hacer UNA api"
-}
+[
+  {
+    "title": "tarea 2",
+    "description": "Hacer UNA api"
+  }
+]
 
 ### Consulta para productos
-GET {{apiProductos}}
+
+GET {{apiProductos}}?busquedaPorNombre=keito
 
 ### Crear un nuevo producto
 POST http://46.183.113.134:3000/api/productos
