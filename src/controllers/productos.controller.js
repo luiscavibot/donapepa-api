@@ -33,7 +33,7 @@ export const consultarProducto = async (req, res) => {
 
         condition = busquedaPorNombre ? { nombre: busquedaPorNombre }:condition;
         
-        const data = await Producto.find(condition);
+        const data = await Producto.find({$and:[condition,{habilitado:true}]});
     
         return res.json(data);
 
