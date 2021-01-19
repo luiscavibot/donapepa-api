@@ -9,7 +9,7 @@ import productosRoutes from "./routes/productos.routes";
 const app = express();
 
 // Settings
-app.set("port", process.env.PORT || 4000);
+app.set("port", process.env.PORT || 3000);
 
 // const corsOptions = {origin: "http://localhost:3000"};
 const corsOptions = {};
