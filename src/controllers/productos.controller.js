@@ -43,6 +43,19 @@ export const consultarProducto = async (req, res) => {
         });
     }
 };
+export const listaProductosPorDescripcion = async (req, res) => {
+  try {
+           
+      const data = await Producto.distinct('nombre');
+  
+      return res.json(data);
+
+  } catch (error) {
+      res.status(500).json({
+      message: error.message || "Something went wrong retrieving the tasks",
+      });
+  }
+};
 export const borrarTodosProductos = async (req, res) => {
   try {
     const data = await Producto.deleteMany({});
