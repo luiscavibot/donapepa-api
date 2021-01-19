@@ -25,14 +25,16 @@ export const crearProducto = async (req, res) => {
 };
 export const consultarProducto = async (req, res) => {
     try {
-        const { keyword, busquedaPorNombre } = req.query;
+        const { keyword, busquedaPorNombre, busquedaPorPresentacion } = req.query;
 
         let condition = keyword
           ? { nombre: { $regex: `${keyword}`, $options: 'i'}}
           : {};
 
         condition = busquedaPorNombre ? { nombre: busquedaPorNombre }:condition;
-        
+        condition = busquedaPorPresentacion?
+                    {nombre: busquedaPorNombre, presentacion: busquedaPorPresentacion}
+                    :condition;
         const data = await Producto.find({$and:[condition,{habilitado:true}]});
     
         return res.json(data);

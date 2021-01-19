@@ -1,6 +1,6 @@
-@apiTasks = http://localhost:3000/api/tasks
-@apiVentas = http://localhost:3000/api/ventas
-@apiProductos = http://localhost:3000/api/productos
+@apiTasks = http://localhost:4000/api/tasks
+@apiVentas = http://localhost:4000/api/ventas
+@apiProductos = http://localhost:4000/api/productos
 
 ### Get Tasks
 GET {{apiVentas}}
@@ -20,8 +20,10 @@ Content-Type: application/json
 ]
 
 ### Consulta para productos
+GET {{apiProductos}}
 
-GET {{apiProductos}}?busquedaPorNombre=keito
+### Consulta para productos sin repetir
+GET {{apiProductos}}/listaProductosPorDescripcion
 
 ### Crear un nuevo producto
 POST http://46.183.113.134:3000/api/productos
