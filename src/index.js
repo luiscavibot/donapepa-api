@@ -6,6 +6,100 @@ app.listen(app.get("port"));
 
 console.log(`Server is running on port ${app.get("port")}`);
 
+// console.log("inicio el axios para enviar a nubefact");
+    
+// const token = "39dd23c2f61344b0b4df5b114654a75f8815261af98a4abb904a1c2cf10899a4";
+// const apiUrl = "https://api.nubefact.com/api/v1/f1b05a3b-bffe-43ff-acc2-3fd4bfe2f5ff";
+
+//     const config = {
+//         headers: { 
+//           'Authorization': `Bearer ${token}`,
+//           "Content-Type" : "application/json"
+//         }
+//     };
+    
+//     const bodyParameters = {
+//         operacion: "generar_comprobante",
+//         tipo_de_comprobante: 1,
+//         serie: "FFF1",
+//         numero:22,
+//         sunat_transaction: 1,
+//         cliente_tipo_de_documento: 6,
+//         cliente_numero_de_documento: "20600695771",
+//         cliente_denominacion: "NUBEFACT SA",
+//         cliente_direccion: "CALLE LIBERTAD 116 MIRAFLORES - LIMA - PERU",
+//         cliente_email: "lcastillov123@gmail.com",
+//         cliente_email_1: "",
+//         cliente_email_2: "",
+//         fecha_de_emision: "22-01-2021",
+//         fecha_de_vencimiento: "",
+//         moneda: 1,
+//         tipo_de_cambio: "",
+//         porcentaje_de_igv: 18.00,
+//         descuento_global: "",
+//         total_descuento: "",
+//         total_anticipo: "",
+//         total_gravada: 500,
+//         total_inafecta: "",
+//         total_exonerada: "",
+//         total_igv: 90,
+//         total_gratuita: "",
+//         total_otros_cargos: "",
+//         total: 590,
+//         percepcion_tipo: "",
+//         percepcion_base_imponible: "",
+//         total_percepcion: "",
+//         total_incluido_percepcion: "",
+//         total_impuestos_bolsas: "",
+//         detraccion: false,
+//         observaciones: "",
+//         documento_que_se_modifica_tipo: "",
+//         documento_que_se_modifica_serie: "",
+//         documento_que_se_modifica_numero: "",
+//         tipo_de_nota_de_credito: "",
+//         tipo_de_nota_de_debito: "",
+//         enviar_automaticamente_a_la_sunat: true,
+//         enviar_automaticamente_al_cliente: false,
+//         condiciones_de_pago: "",
+//         medio_de_pago: "",
+//         placa_vehiculo: "",
+//         orden_compra_servicio: "",  
+//         formato_de_pdf: "",
+//         generado_por_contingencia: "",
+//         bienes_region_selva: "",
+//         servicios_region_selva: "",
+//         items: [
+//               {
+//                 unidad_de_medida: "NIU",
+//                 codigo: "001",
+//                 codigo_producto_sunat: "10000000",
+//                 descripcion: "DETALLE DEL PRODUCTO",
+//                 cantidad: 1,
+//                 valor_unitario: 500,
+//                 precio_unitario: 590,
+//                 descuento: "",
+//                 subtotal: 500,
+//                 tipo_de_igv: 1,
+//                 igv: 90,
+//                 total: 590,
+//                 anticipo_regularizacion: false,
+//                 anticipo_documento_serie: "",
+//                 anticipo_documento_numero: ""
+//               }],
+//         guias: [
+//                 {
+//                     guia_tipo: 1,
+//                     guia_serie_numero: "0001-23"
+//                 }
+//         ]
+//     };
+
+//     axios.post( 
+//       apiUrl,
+//       bodyParameters,
+//       config
+//     ).then(console.log).catch(console.log);
+
 // let productos = [{nombre:"DP Tajada Piña",presentacion:"Unidad",codigo:"1000001",marca:"Doña Pepa",precioUnitario:1.5,habilitado:0},
 // {nombre:"DP Tradicional",presentacion:"1/2 kg",codigo:"1000002",marca:"Doña Pepa",precioUnitario:7,habilitado:1},
 // {nombre:"DP Tradicional",presentacion:"1/4 kg - 250 g",codigo:"1000003",marca:"Doña Pepa",precioUnitario:3.5,habilitado:1},
