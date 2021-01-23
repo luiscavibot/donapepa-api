@@ -73,11 +73,10 @@ export const crearVenta = async (req, res) => {
             config
           )
           .then(function (paquete) {
-            console.log("Salió bien y esta es la data:" , paquete.data);
             return res.json(paquete.data);
           })
           .catch(function (paquete) {
-            console.log(paquete);
+            return res.json(paquete.response.data);
           })
 };
 
