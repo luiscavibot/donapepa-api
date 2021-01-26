@@ -3,8 +3,8 @@ import axios from "axios";
 import { response } from "express";
 // import { getPagination } from "../libs/getPagination";
 
-const tokenNubeFactEmsion = "390c1fd7c71f46379a59d4c6d1a0c23ef7c7c3ab16cf414a8298da7a58d1698c";
-const apiUrlNubeFactEmsion = "https://api.nubefact.com/api/v1/0cce0d84-fc4b-46dd-a941-34cff1816c0b";
+const tokenNubeFactEmsion = "1b4c96ce6f1d4e9e9430a9b521bc21ed51dfdb1a9ddf42238e98b25b3fea6009";
+const apiUrlNubeFactEmsion = "https://api.nubefact.com/api/v1/8c7f8647-d998-470a-a9b2-13ebdc4b1150";
 
 export const crearVenta = async (req, res) => {
           const config = {
@@ -73,12 +73,72 @@ export const crearVenta = async (req, res) => {
             config
           )
           .then(function (paquete) {
+            // console.log(paquete.data.aceptada_por_sunat);
+            // cargarBaseDatos()  
+            // if (paquete.data) {
+            //   console.log(paquete.data.aceptada_por_sunat);
+            //   cargarBaseDatos()    
+            // }
             return res.json(paquete.data);
           })
           .catch(function (paquete) {
             return res.json(paquete.response.data);
           })
+          // const cargarBaseDatos = () => {
+          //   const venta = new Venta({
+          //     usuario: req.body.adicionales.usuario,
+          //     serie: req.body.nubefact.serie,
+          //     numero: req.body.nubefact.numero,
+          //     items : req.body.nubefact.items,
+          //     tipoRegalo: req.body.adicionales.regalo.tipoRegalo,
+          //     cantidadRegalo: req.body.adicionales.regalo.cantidad,
+          //     tipoDocumentoCliente: req.body.nubefact.cliente_tipo_de_documento,
+          //     numeroDocumentoCliente: req.body.nubefact.cliente_numero_de_documento,
+          //     fechaEmision: req.body.nubefact.fecha_de_emision,
+          //     nombreCliente: req.body.nubefact.cliente_denominacion,
+          //     tipoMoneda:req.body.nubefact.moneda,
+          //     igv:req.body.nubefact.total_igv,
+          //     email:req.body.nubefact.cliente_email,
+          //     celular:req.body.adicionales.celularCliente,
+          //     condicionPago: req.body.nubefact.medio_de_pago,
+          //     numeroOperacion:req.body.adicionales.numeroOperacion,  
+          //     provincia: req.body.adicionales.provincia,
+          //     canalVenta: req.body.adicionales.canalVenta,
+          //     delivery: req.body.adicionales.delivery,
+          //     direccion: req.body.nubefact.cliente_direccion,
+          //     referencias: req.body.adicionales.referencias,
+          //     gravada:req.body.nubefact.total_gravada,
+          //     descuento:req.body.nubefact.total_descuento,
+          //     totalIgv:req.body.nubefact.total_igv,
+          //     totalPagar:req.body.nubefact.total
+          //   });
+        
+          //   // Saving the task in the Database
+          //   // const ventaSaved = await venta.save();
+          //   venta.save();
+          // }
 };
+// export const registrarVenta = async (req, res) => {
+//   try {
+      
+//     // create tutorial
+//     const venta = new Venta(
+//       { 
+          
+//       }                
+//     );
+
+//     // Saving the task in the Database
+//     const ventaSaved = await venta.save();
+
+//     // Responding to the client
+//     return res.json(productoSaved);
+//   } catch (error) {
+//     res.status(500).json({
+//       message: error.message || "Something went wrong creating the Task",
+//     });
+//   }
+// };
 
 export const consultarVentas = async (req, res) => {
   try {
@@ -117,6 +177,19 @@ export const buscarProducto = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       message: error.message || "Something went wrong retrieving the tasks",
+    });
+  }
+};
+export const borrarTodasVentas = async (req, res) => {
+  try {
+    const data = await Venta.deleteMany({});
+    res.json({
+      message: `${data.deletedCount} Task were deleted Successfully`,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message:
+        error.message || "Some error ocurred while removing all tutorials",
     });
   }
 };

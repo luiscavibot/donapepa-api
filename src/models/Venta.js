@@ -6,8 +6,7 @@ const ventaSchema = new Schema(
     usuario: String,
     serie: String,
     numero: Number,
-    type: Number,
-    lista : Array,
+    items : Array,
     tipoRegalo:String,
     cantidadRegalo:Number,
     tipoDocumentoCliente:String,
@@ -28,7 +27,6 @@ const ventaSchema = new Schema(
     gravada:Number,
     descuento:Number,
     totalIgv:Number,
-    totalDelivery:Number,
     totalPagar:Number
   },
   {

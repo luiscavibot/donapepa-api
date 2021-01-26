@@ -20,7 +20,7 @@ Content-Type: application/json
 ]
 
 ### Consulta para productos
-GET {{apiProductos}}
+GET {{apiProductos}}?busquedaPorNombre=kekito&busquedaPorPresentacion=1/2kg
 
 ### Consulta para productos sin repetir
 GET {{apiProductos}}/listaProductosPorDescripcion
