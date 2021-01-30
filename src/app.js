@@ -5,6 +5,7 @@ import cors from "cors";
 import taskRoutes from "./routes/tasks.routes";
 import ventasRoutes from "./routes/ventas.routes";
 import productosRoutes from "./routes/productos.routes";
+import numeracionRoutes from "./routes/numeracion.routes";
 
 const app = express();
 
@@ -26,5 +27,6 @@ app.get("/", (req, res) => {
 app.use("/api/tasks", taskRoutes);
 app.use("/api/ventas", ventasRoutes);
 app.use("/api/productos", productosRoutes);
+app.use("/api/numeracion", numeracionRoutes);
 
 export default app;
