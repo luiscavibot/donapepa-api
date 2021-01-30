@@ -1,6 +1,6 @@
 import app from "./app";
 import "./database";
-// import axios from "axios"
+import axios from "axios"
 
 app.listen(app.get("port"));
 
@@ -99,6 +99,14 @@ console.log(`Server is running on port ${app.get("port")}`);
 //       bodyParameters,
 //       config
 //     ).then(console.log).catch(console.log);
+
+
+// let productos = [{nombre:"Delivery",presentacion:"Centro de Lima",codigo:"Sin código",marca:"Sin marca",precioUnitario:10.00,habilitado:1},
+// {nombre:"Delivery",presentacion:"Breña",codigo:"Sin código",marca:"Sin marca",precioUnitario:10.00,habilitado:1},
+// {nombre:"Delivery",presentacion:"Lince",codigo:"Sin código",marca:"Sin marca",precioUnitario:10.00,habilitado:1},
+// {nombre:"Delivery",presentacion:"Rimac",codigo:"Sin código",marca:"Sin marca",precioUnitario:10.00,habilitado:1},
+// {nombre:"Bolsa de plástico",presentacion:"",codigo:"Sin código",marca:"Sin marca",precioUnitario:0.10,habilitado:1}]
+
 
 // let productos = [{nombre:"DP Tajada Piña",presentacion:"Unidad",codigo:"1000001",marca:"Doña Pepa",precioUnitario:1.5,habilitado:0},
 // {nombre:"DP Tradicional",presentacion:"1/2 kg",codigo:"1000002",marca:"Doña Pepa",precioUnitario:7,habilitado:1},
