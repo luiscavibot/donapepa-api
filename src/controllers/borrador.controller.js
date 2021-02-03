@@ -101,7 +101,7 @@ export const obtenerBorradores = async (req, res) => {
 
 export const borrarBorrador = async (req, res) => {
     const id = req.params.id;
-  
+    console.log(id);
     try {
       const data = await Borrador.findByIdAndDelete(id);
       if (!data) {

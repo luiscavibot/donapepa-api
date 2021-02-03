@@ -5,6 +5,6 @@ const router = Router();
 
 router.post("/", borradorCtrl.crearBorrador);
 router.get("/", borradorCtrl.obtenerBorradores);
-router.delete("/", borradorCtrl.borrarBorrador);
+router.delete("/:id", borradorCtrl.borrarBorrador);
 
 export default router;
