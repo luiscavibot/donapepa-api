@@ -117,3 +117,34 @@ export const borrarBorrador = async (req, res) => {
       });
     }
 };
+
+export const filtroBorradores = async (req, res) => {
+
+  try {
+    const { pago, general, delivery, fecha_inicial, fecha_final } = req.query;
+    
+    //Si 1 es delivery y 2 es sin delivery 
+
+    let c_pago = pago ? { medio_de_pago: { $regex: `${pago}`, $options: 'i'}} : {};
+
+    let c_delivery = delivery ? delivery == 1 ? { "items.descripcion" : new RegExp(".*delivery.*", "i")} : { "items.descripcion" : { $not: { $regex: ".*delivery.*" , $options: 'i'} } }  : {};
+    
+    let c_general = general ? {$or: [
+      { "items.descripcion" : new RegExp(".*"+general+".*", "i")},
+      { "cliente_denominacion" : new RegExp(".*"+general+".*", "i")},
+      { "cliente_direccion" : new RegExp(".*"+general+".*", "i")},
+      { "cliente_email" : new RegExp(".*"+general+".*", "i")}
+    ]}  : {};
+
+    let c_fecha = fecha_inicial ? { fecha: {$gte: fecha_inicial, $lte: fecha_final} } : {};
+    
+    const data = await Borrador.find({$and:[c_pago,c_delivery,c_general,c_fecha]});
+
+    return res.json(data);
+
+  } catch (error) {
+      res.status(500).json({
+      message: error.message || "Something went wrong retrieving the tasks",
+      });
+  }
+};
