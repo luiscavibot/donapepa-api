@@ -3,7 +3,7 @@ import { Router } from "express";
 
 const router = Router();
 
-// router.post("/", productosCtrl.crearProducto);
+router.post("/", clientesCtrl.crearCliente);
 router.get("/", clientesCtrl.consultarCliente);
 // router.get("/listaProductosPorDescripcion", productosCtrl.listaProductosPorDescripcion);
 // router.delete("/", productosCtrl.borrarTodosProductos);
