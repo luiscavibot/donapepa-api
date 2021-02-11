@@ -163,8 +163,9 @@ export const registrarVenta = async (req, res) => {
 
 export const consultarVentas = async (req, res) => {
   try {
-    
-    const ventas = await Venta.find();
+    const { fechaEmision } = req.query;
+    let condition = fechaEmision?{fecha_de_emision: fechaEmision}:{}
+    const ventas = await Venta.find(condition);
     return res.json(ventas);
 
   } catch (error) {
