@@ -43,16 +43,6 @@ export const crearCliente = async (req, res) => {
 
 export const consultarCliente = async (req, res) => {
     try {
-        // const { keyword, busquedaPorNombre, busquedaPorPresentacion } = req.query;
-
-        // let condition = keyword
-        //   ? { nombre: { $regex: `${keyword}`, $options: 'i'}}
-        //   : {};
-
-        // condition = busquedaPorNombre ? { nombre: busquedaPorNombre }:condition;
-        // condition = busquedaPorPresentacion?
-        //             {nombre: busquedaPorNombre, presentacion: busquedaPorPresentacion}
-        //             :condition;
         const data = await Cliente.find();
     
         return res.json(data);
@@ -64,30 +54,21 @@ export const consultarCliente = async (req, res) => {
     }
 };
 
-// export const listaProductosPorDescripcion = async (req, res) => {
-//   try {
-           
-//       const data = await Producto.distinct('nombre');
-  
-//       return res.json(data);
-
-//   } catch (error) {
-//       res.status(500).json({
-//       message: error.message || "Something went wrong retrieving the tasks",
-//       });
-//   }
-// };
-
-// export const borrarTodosProductos = async (req, res) => {
-//   try {
-//     const data = await Producto.deleteMany({});
-//     res.json({
-//       message: `${data.deletedCount} Task were deleted Successfully`,
-//     });
-//   } catch (error) {
-//     res.status(500).json({
-//       message:
-//         error.message || "Some error ocurred while removing all tutorials",
-//     });
-//   }
-// };
+export const consultarClienteId = async (req, res) => {
+  const id = req.params.id;
+  console.log(id);
+  try {
+    const data = await Cliente.findById(id);
+    if (!data) {
+      res.status(404).json({
+        message: `Cannot delete Task with id=${id}. Maybe the task does not exists`,
+      });
+    } else {
+      return res.json(data);
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: `Could not delete Task with id = ${id}`,
+    });
+  }
+};
