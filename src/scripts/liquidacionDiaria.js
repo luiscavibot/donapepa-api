@@ -6,7 +6,7 @@ const {registrarLiquidacion} = require('./functions/registrarLiquidacion')
 
 const main = ()=>{
     console.log("Script para liquidación diaria activado...");
-    cron.schedule("44 18 */1 */1 *", async () => {
+    cron.schedule("57 18 */1 */1 *", async () => {
         //57 11 */1 */1 *
         const fechaActual = new Date()
         let sumaTotal = 0
