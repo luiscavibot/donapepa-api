@@ -6,7 +6,7 @@ const {registrarLiquidacion} = require('./functions/registrarLiquidacion')
 
 const main = ()=>{
     console.log("Script para liquidación diaria activado...");
-    cron.schedule("40 11 */1 */1 *", async () => {
+    cron.schedule("57 11 */1 */1 *", async () => {
         const fechaActual = new Date()
         let sumaTotal = 0
         fechaActual.setHours(fechaActual.getHours()-5); //Hora Peruana
