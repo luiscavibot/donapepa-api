@@ -8,7 +8,7 @@ import productosRoutes from "./routes/productos.routes";
 import numeracionRoutes from "./routes/numeracion.routes";
 import borradorRoutes from "./routes/borrador.routes";
 import liquidacionesRoutes from "./routes/liquidaciones.routes";
-
+import clientesRoutes from "./routes/clientes.routes";
 
 const app = express();
 
@@ -34,5 +34,6 @@ app.use("/api/numeracion", numeracionRoutes);
 app.use("/api/borrador", borradorRoutes);
 app.use("/api/borrador", borradorRoutes);
 app.use("/api/liquidaciones", liquidacionesRoutes);
+app.use("/api/clientes", clientesRoutes);
 
 export default app;
