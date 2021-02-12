@@ -3,6 +3,7 @@ import { Router } from "express";
 
 const router = Router();
 
+router.get("/", ventasCtrl.filtroVentas);
 router.post("/", ventasCtrl.crearVenta);
 router.post("/registrarVenta", ventasCtrl.registrarVenta);
 router.get("/", ventasCtrl.consultarVentas);

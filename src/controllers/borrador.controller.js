@@ -117,3 +117,42 @@ export const borrarBorrador = async (req, res) => {
       });
     }
 };
+
+export const filtroBorradores = async (req, res) => {
+
+  try {
+    const { pago, general, delivery, fecha_inicial, fecha_final } = req.query;
+    
+    //Si 1 es delivery y 2 es sin delivery 
+    // const a = new Date();
+    // const f = new Date();
+    // const fzote = f.setHours(a.getHours() - 5);
+    // console.log(fzote);
+
+    let c_pago = pago ? { medio_de_pago: { $regex: `${pago}`, $options: 'i'}} : {};
+
+    let c_delivery = delivery ? delivery == 1 ? { "items.descripcion" : new RegExp(".*delivery.*", "i")} : { "items.descripcion" : { $not: { $regex: ".*delivery.*" , $options: 'i'} } }  : {};
+    
+    let c_general = general ? {$or: [
+      { "serie" : new RegExp(".*"+general+".*", "i")},
+      { "cliente_denominacion" : new RegExp(".*"+general+".*", "i")},
+      { "tipo_de_comprobante" : new RegExp(".*"+general+".*", "i")},
+      { "numero" : new RegExp(".*"+general+".*", "i")},
+      { "items.total" : {$regex: `${general}`, $options: 'i'}},
+      { "items.subtotal" : {$regex: `${general}`, $options: 'i'}},
+    ]}  : {};
+
+    // let c_fecha = fecha_inicial && fecha_final ? { fecha: {$gte: fecha_inicial, $lte: fecha_final} } : {};
+
+    let c_fecha = fecha_inicial && !fecha_final ? { fecha: {$eq: new Date(fecha_inicial)} } : !fecha_inicial && fecha_final ? { fecha: {$eq: new Date(fecha_final)} } : { fecha: {$gte: new Date(fecha_inicial), $lte: new Date(fecha_final)} };
+    
+    const data = await Borrador.find({$and:[c_pago,c_delivery,c_general,c_fecha]});
+
+    return res.json(data);
+
+  } catch (error) {
+      res.status(500).json({
+      message: error.message || "Something went wrong retrieving the tasks",
+      });
+  }
+};

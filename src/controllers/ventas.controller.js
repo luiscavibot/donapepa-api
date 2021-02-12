@@ -202,6 +202,7 @@ export const buscarProducto = async (req, res) => {
     });
   }
 };
+
 export const borrarTodasVentas = async (req, res) => {
   try {
     const data = await Venta.deleteMany({});
@@ -213,5 +214,39 @@ export const borrarTodasVentas = async (req, res) => {
       message:
         error.message || "Some error ocurred while removing all tutorials",
     });
+  }
+};
+
+export const filtroVentas = async (req, res) => {
+  try {
+    const { pago, general, delivery, fecha_inicial, fecha_final, producto } = req.query;
+    
+    //Si 1 es delivery y 2 es sin delivery 
+
+    let c_pago = pago ? { medio_de_pago: { $regex: `${pago}`, $options: 'i'}} : {};
+
+    let c_delivery = delivery ? delivery == 1 ? { "items.descripcion" : new RegExp(".*delivery.*", "i")} : { "items.descripcion" : { $not: { $regex: ".*delivery.*" , $options: 'i'} } }  : {};
+    
+    let c_general = general ? {$or: [
+      { "serie" : new RegExp(".*"+general+".*", "i")},
+      { "cliente_denominacion" : new RegExp(".*"+general+".*", "i")},
+      { "tipo_de_comprobante" : new RegExp(".*"+general+".*", "i")},
+      { "numero" : new RegExp(".*"+general+".*", "i")},
+      { "items.total" : {$regex: `${general}`, $options: 'i'}},
+      { "items.subtotal" : {$regex: `${general}`, $options: 'i'}},
+    ]}  : {};
+
+    let c_fecha = fecha_inicial && !fecha_final ? { fecha: {$eq: new Date(fecha_inicial)} } : !fecha_inicial && fecha_final ? { fecha: {$eq: new Date(fecha_final)} } : { fecha: {$gte: new Date(fecha_inicial), $lte: new Date(fecha_final)} };
+    
+    let c_producto = producto ? { medio_de_pago: { $regex: `${produto}`, $options: 'i'} } : {};
+
+    const data = await Venta.find({$and:[c_pago,c_delivery,c_general,c_fecha,c_producto]});
+
+    return res.json(data);
+
+  } catch (error) {
+      res.status(500).json({
+      message: error.message || "Something went wrong retrieving the tasks",
+      });
   }
 };
