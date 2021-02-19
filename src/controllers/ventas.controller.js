@@ -220,7 +220,9 @@ export const borrarTodasVentas = async (req, res) => {
 export const filtroVentas = async (req, res) => {
   try {
     const { pago, general, delivery, fecha_inicial, fecha_final, producto } = req.query;
-    
+    console.log("ff");
+    console.log(pago);
+    console.log(producto);
     //Si 1 es delivery y 2 es sin delivery 
 
     let c_pago = pago ? { medio_de_pago: { $regex: `${pago}`, $options: 'i'}} : {};
@@ -230,15 +232,15 @@ export const filtroVentas = async (req, res) => {
     let c_general = general ? {$or: [
       { "serie" : new RegExp(".*"+general+".*", "i")},
       { "cliente_denominacion" : new RegExp(".*"+general+".*", "i")},
-      { "tipo_de_comprobante" : new RegExp(".*"+general+".*", "i")},
-      { "numero" : new RegExp(".*"+general+".*", "i")},
-      { "items.total" : {$regex: `${general}`, $options: 'i'}},
-      { "items.subtotal" : {$regex: `${general}`, $options: 'i'}},
+      // { "tipo_de_comprobante" : new RegExp(".*"+general+".*", "i")},
+      // { "numero" : new RegExp(".*"+general+".*", "i")},
+      // { "items.total" : {$regex: `${general}`, $options: 'i'}},
+      // { "items.subtotal" : {$regex: `${general}`, $options: 'i'}},
     ]}  : {};
 
-    let c_fecha = fecha_inicial && !fecha_final ? { fecha: {$eq: new Date(fecha_inicial)} } : !fecha_inicial && fecha_final ? { fecha: {$eq: new Date(fecha_final)} } : { fecha: {$gte: new Date(fecha_inicial), $lte: new Date(fecha_final)} };
+    let c_fecha = !fecha_inicial && !fecha_final ? {} : fecha_inicial && !fecha_final ? { fecha: {$gte: new Date(fecha_inicial)} } : !fecha_inicial && fecha_final ? { fecha: {$eq: new Date(fecha_final)} } : { fecha: {$gte: new Date(fecha_inicial), $lte: new Date(fecha_final)} };
     
-    let c_producto = producto ? { medio_de_pago: { $regex: `${produto}`, $options: 'i'} } : {};
+    let c_producto = producto ? { "items.descripcion" : new RegExp(".*"+producto+".*", "i")} : {};
 
     const data = await Venta.find({$and:[c_pago,c_delivery,c_general,c_fecha,c_producto]});
 

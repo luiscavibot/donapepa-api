@@ -13,7 +13,7 @@ import liquidacionesRoutes from "./routes/liquidaciones.routes";
 const app = express();
 
 // Settings
-app.set("port", process.env.PORT || 3000);
+app.set("port", process.env.PORT || 3030);
 
 // const corsOptions = {origin: "http://localhost:3000"};
 const corsOptions = {};

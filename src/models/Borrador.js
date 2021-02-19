@@ -63,7 +63,7 @@ const borradorSchema = new Schema(
     canalVenta: String,
     clienteReferencias: String,
     clienteDepartamento: String,
-    clienteProvincia: String,  
+    clienteProvincia: String,
   },
   {
     versionKey: false,

@@ -122,32 +122,35 @@ export const filtroBorradores = async (req, res) => {
 
   try {
     const { pago, general, delivery, fecha_inicial, fecha_final } = req.query;
+    const fecha_inicial_convertida = new Date((new Date(fecha_inicial)).setHours(0,0,0)-5);
     
-    //Si 1 es delivery y 2 es sin delivery 
-    // const a = new Date();
-    // const f = new Date();
-    // const fzote = f.setHours(a.getHours() - 5);
-    // console.log(fzote);
-
+    const fecha_final_convertida = new Date((new Date(fecha_final)).setHours(18,59,59));
+    
     let c_pago = pago ? { medio_de_pago: { $regex: `${pago}`, $options: 'i'}} : {};
 
     let c_delivery = delivery ? delivery == 1 ? { "items.descripcion" : new RegExp(".*delivery.*", "i")} : { "items.descripcion" : { $not: { $regex: ".*delivery.*" , $options: 'i'} } }  : {};
     
     let c_general = general ? {$or: [
       { "serie" : new RegExp(".*"+general+".*", "i")},
+      // { "items.descripcion" : new RegExp(".*"+general+".*", "i")},
       { "cliente_denominacion" : new RegExp(".*"+general+".*", "i")},
-      { "tipo_de_comprobante" : new RegExp(".*"+general+".*", "i")},
-      { "numero" : new RegExp(".*"+general+".*", "i")},
-      { "items.total" : {$regex: `${general}`, $options: 'i'}},
-      { "items.subtotal" : {$regex: `${general}`, $options: 'i'}},
+      // { "tipo_de_comprobante" : new RegExp(".*"+general+".*", "i")},
+      // { "numero" : new RegExp(".*"+general+".*", "i")},
+      // { "items.total" : {$regex: `${general}`, $options: 'i'}},
+      // { "items.subtotal" : {$regex: `${general}`, $options: 'i'}},
     ]}  : {};
 
     // let c_fecha = fecha_inicial && fecha_final ? { fecha: {$gte: fecha_inicial, $lte: fecha_final} } : {};
 
-    let c_fecha = fecha_inicial && !fecha_final ? { fecha: {$eq: new Date(fecha_inicial)} } : !fecha_inicial && fecha_final ? { fecha: {$eq: new Date(fecha_final)} } : { fecha: {$gte: new Date(fecha_inicial), $lte: new Date(fecha_final)} };
+    let c_fecha = !fecha_inicial && !fecha_final ? {} : fecha_inicial && !fecha_final ? { fecha: {$gte: fecha_inicial_convertida} } : !fecha_inicial && fecha_final ? { fecha: {$lte: fecha_final_convertida } } : { fecha: {$gte: fecha_inicial_convertida, $lte: fecha_final_convertida} };  
+    // .substr(0,10)
+    console.log(c_pago);
+    console.log(c_delivery);
+    console.log(c_general);
+    console.log(c_fecha);
     
     const data = await Borrador.find({$and:[c_pago,c_delivery,c_general,c_fecha]});
-
+    
     return res.json(data);
 
   } catch (error) {
